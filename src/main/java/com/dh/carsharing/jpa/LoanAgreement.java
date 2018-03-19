@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.dh.carsharing.jpa;
 
 import java.io.Serializable;
@@ -34,11 +30,13 @@ public class LoanAgreement implements Serializable{
     @Column(name = "BEGINNDATUM")
     @NotNull(message = "Das Beginndatum darf nicht leer sein.")
     @Future(message = "Das Datum muss in der Zukunft liegen.")
+    @Temporal(TemporalType.DATE)
     private Date beginn;
     
     @Column(name = "ENDEDATUM")
     @NotNull(message = "Das Endedatum darf nicht leer sein.")
     @Future(message = "Das Datum muss in der Zukunft liegen.")
+    @Temporal(TemporalType.DATE)
     private Date ende;
 
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
