@@ -5,10 +5,15 @@
  */
 package com.dh.carsharing.webservice;
 
+import com.dh.carsharing.jpa.Car;
+import com.dh.carsharing.jpa.Customer;
+import com.dh.carsharing.jpa.LoanAgreement;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 
@@ -34,21 +39,21 @@ public class CarSharingWebService {
     @WebMethod
     @WebResult(name="customer")
     public Customer createNewCustomer(@WebParam(name="customer") Customer customer) {
-        return this.customerBean.create(customer);
+        return this.customerBean.saveNew(customer);
     }
     
     //Anlegen eines neuen Fahrzeugs
     @WebMethod
     @WebResult(name="car")
     public Car createNewCar(@WebParam(name="car") Car car) {
-        return this.carBean.create(car);
+        return this.carBean.saveNew(car);
     }
     
     //Ausleihen eines Fahrzeugs 
     @WebMethod
     @WebResult(name="car")
-    public Car lendCar(@WebParam(name="car") Car car) {
-        return this.carBean.lend(car);
+    public LoanAgreement lendCar(@WebParam(name="car") Car car, Date startDate, Date endDate) throws NotAvailableException {
+        return this.loanAgreementBean.lend(car, startDate, endDate);
     }
     
     //Auflisten aller vorhandenen Fahrzeuge 
