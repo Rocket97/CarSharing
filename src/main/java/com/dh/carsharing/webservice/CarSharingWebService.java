@@ -49,9 +49,10 @@ public class CarSharingWebService {
     }
     
     //Ausleihen eines Fahrzeugs 
+
     @WebMethod
     @WebResult(name="loanAgreement")
-    public LoanAgreement lendCar(@WebParam(name="car") Car car, Date startDate, Date endDate) throws NotAvailableException {
+    public LoanAgreement lendCar(@WebParam(name="customer") Customer customer, @WebParam(name="car") Car car, @WebParam(name="startDate") Date startDate, @WebParam(name="endDate") Date endDate) throws NotAvailableException {
         return this.loanAgreementBean.lend(car, startDate, endDate);
     }
     
