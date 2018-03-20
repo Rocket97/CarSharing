@@ -43,8 +43,7 @@ public class LoanAgreement implements Serializable{
     public LoanAgreement() {
     }
     
-    public LoanAgreement(long id, Customer kunde, Car auto, Date beginn, Date ende) {
-        this.id = id;
+    public LoanAgreement(Customer kunde, Car auto, Date beginn, Date ende) {
         this.kunde = kunde;
         this.auto = auto;
         this.beginn = beginn;
