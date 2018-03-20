@@ -5,12 +5,8 @@
  */
 package com.dh.carsharing.webservice;
 
-import com.dh.carsharing.ejb.CarBean;
-import com.dh.carsharing.ejb.CustomerBean;
-import com.dh.carsharing.ejb.LoanAgreementBean;
-import com.dh.carsharing.jpa.Car;
-import com.dh.carsharing.jpa.Customer;
-import com.dh.carsharing.jpa.LoanAgreement;
+import com.dh.carsharing.jpa.*;
+import com.dh.carsharing.ejb.*;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
