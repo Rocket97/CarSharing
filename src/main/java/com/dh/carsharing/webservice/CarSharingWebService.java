@@ -63,6 +63,13 @@ public class CarSharingWebService {
         return this.carBean.findAll();
     }
     
+    //Finden eines Fahrzeuges mit der ID
+    @WebMethod
+    @WebResult(name="car")
+    public Car getCarById(@WebParam(name="id") long id) {
+        return this.carBean.findById(id);
+    }
+    
     //Auflisten aller Leihverträge eines Kunden
     @WebMethod
     @WebResult(name="loanAgreement")
