@@ -7,11 +7,13 @@ import com.dh.carsharing.jpa.LoanAgreement;
 import com.dh.carsharing.webservice.NotAvailableException;
 import java.util.Date;
 import java.util.List;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author Valerie
  */
+@Stateless
 public class LoanAgreementBean extends EntityBean<LoanAgreement, Long>{
     
     //Konstruktor
