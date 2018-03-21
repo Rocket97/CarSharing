@@ -58,8 +58,7 @@ public class Customer implements Serializable{
     public Customer() {
     }
     
-    public Customer(long id, String nachname, String vorname, String strasse, String hausnr, String plz, String ort, String land, List<LoanAgreement> la_list) {
-        this.id = id;
+    public Customer(String nachname, String vorname, String strasse, String hausnr, String plz, String ort, String land) {
         this.nachname = nachname;
         this.vorname = vorname;
         this.strasse = strasse;
@@ -67,7 +66,6 @@ public class Customer implements Serializable{
         this.plz = plz;
         this.ort = ort;
         this.land = land;
-        this.la_list = la_list;
     }
     //</editor-fold>
 
