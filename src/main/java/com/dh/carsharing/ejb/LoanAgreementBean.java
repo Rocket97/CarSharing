@@ -21,16 +21,24 @@ public class LoanAgreementBean extends EntityBean<LoanAgreement, Long>{
         super(LoanAgreement.class);
     }
     
-    public LoanAgreement lend (Customer customer, Car car, Date startDate, Date endDate) throws NotAvailableException{
+    public LoanAgreement lend (Long customerID, Long carID, Date startDate, Date endDate) throws NotAvailableException{
         
         // schauen, ob gewähltes Auto in dem Zeitraum verfügbar ist
         List<LoanAgreement> la_list = em.createQuery("SELECT l FROM LoanAgreement l WHERE auto_id = :carId AND ((beginndatum BETWEEN :startDate AND :endDate) OR (endedatum BETWEEN :startDate AND :endDate) OR (beginndatum <= :startDate AND :endDate <= endedatum))")
-                .setParameter("carId", car.getId())
+                .setParameter("carId", carID)
                 .setParameter("startDate", startDate)
                 .setParameter("endDate", endDate)
                 .getResultList();
+        
+        // Wenn keine Leihverträge gefunden wurden, dann ist das Auto verfügbar und der angeforderte Leihvertrag kann erstellt werden
         if (la_list == null){
+            // finde den Customer und das Auto mit der übergebenen ID
+            Customer customer = em.find(Customer.class, customerID);
+            Car car = em.find(Car.class, carID);
+            
+            // legt einen Leihvertrag mit gegebenen Daten an
             LoanAgreement la = new LoanAgreement(customer, car, startDate, endDate);
+            
             // Leihvertrag speichern
             this.saveNew(la);
             return la;
