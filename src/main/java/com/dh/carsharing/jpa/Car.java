@@ -33,13 +33,13 @@ public class Car implements Serializable{
     @Size(min = 4, max = 4, message = "Das Jahr muss 4 Zahlen haben.")
     @DecimalMin(value = "1886", message = "Das erste Auto wurde im Jahr 1886 gebaut. Sie können mich nicht verarschen ;D .")
     private int baujahr;
-
+    
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
     public Car() {
     }
     
-    public Car(long id, String hersteller, String modell, int baujahr) {
-        this.id = id;
+    public Car(String hersteller, String modell, int baujahr) {
+        //this.id = id;
         this.hersteller = hersteller;
         this.modell = modell;
         this.baujahr = baujahr;
