@@ -41,6 +41,13 @@ public class CarSharingWebService {
         return this.customerBean.saveNew(customer);
     }
     
+    //Finden eines Customers mittels der ID
+    @WebMethod
+    @WebResult(name="find_customer")
+    public Customer getCustomerById(@WebParam(name="id") long id) {
+        return this.customerBean.findById(id);
+    }
+    
     //Anlegen eines neuen Fahrzeugs
     @WebMethod
     @WebResult(name="car")
@@ -51,28 +58,34 @@ public class CarSharingWebService {
     //Ausleihen eines Fahrzeugs 
 
     @WebMethod
-    @WebResult(name="loanAgreement")
-    public LoanAgreement lendCar(@WebParam(name="customer") Customer customer, @WebParam(name="car") Car car, @WebParam(name="startDate") Date startDate, @WebParam(name="endDate") Date endDate) throws NotAvailableException {
-        return this.loanAgreementBean.lend(customer, car, startDate, endDate);
+    @WebResult(name="createLoanAgreement")
+    public LoanAgreement lendCar(@WebParam(name="loanAgreement") LoanAgreement loanAgreement) throws NotAvailableException {
+        //if-Klausel zum Abprüfen, ob es verfügbar ist
+        return this.loanAgreementBean.saveNew(loanAgreement);
     }
+    //@WebMethod
+    //@WebResult(name="loanAgreement")
+    //public LoanAgreement lendCar(@WebParam(name="customer") Customer customer, @WebParam(name="car") Car car, @WebParam(name="startDate") Date startDate, @WebParam(name="endDate") Date endDate) throws NotAvailableException {
+    //    return this.loanAgreementBean.lend(customer, car, startDate, endDate);
+    //}
     
     //Auflisten aller vorhandenen Fahrzeuge 
     @WebMethod
-    @WebResult(name="car")
+    @WebResult(name="findAll_cars")
     public List<Car> getAllCars() {
         return this.carBean.findAll();
     }
     
     //Finden eines Fahrzeuges mit der ID
     @WebMethod
-    @WebResult(name="car")
+    @WebResult(name="find_car")
     public Car getCarById(@WebParam(name="id") long id) {
         return this.carBean.findById(id);
     }
     
     //Auflisten aller Leihverträge eines Kunden
     @WebMethod
-    @WebResult(name="loanAgreement")
+    @WebResult(name="findAll_loanAgreements")
     public List<LoanAgreement> getAllLoanAgreements() {
         return this.loanAgreementBean.findAll();
     }
