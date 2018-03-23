@@ -24,7 +24,7 @@ public class LoanAgreementBean extends EntityBean<LoanAgreement, Long>{
     public LoanAgreement lend (Long customerID, Long carID, Date startDate, Date endDate) throws NotAvailableException{
         
         // schauen, ob gewähltes Auto in dem Zeitraum verfügbar ist
-        List<LoanAgreement> la_list = em.createQuery("SELECT l FROM LoanAgreement l WHERE auto_id = :carId AND ((beginndatum BETWEEN :startDate AND :endDate) OR (endedatum BETWEEN :startDate AND :endDate) OR (beginndatum <= :startDate AND :endDate <= endedatum))")
+        List<LoanAgreement> la_list = em.createQuery("SELECT l FROM LoanAgreement l WHERE l.auto = :carId AND ((l.beginn BETWEEN :startDate AND :endDate) OR (l.ende BETWEEN :startDate AND :endDate) OR (l.beginn <= :startDate AND :endDate <= l.ende))")
                 .setParameter("carId", carID)
                 .setParameter("startDate", startDate)
                 .setParameter("endDate", endDate)
