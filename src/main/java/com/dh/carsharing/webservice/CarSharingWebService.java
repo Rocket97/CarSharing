@@ -94,8 +94,20 @@ public class CarSharingWebService {
     
     // Überprüfung der Daten des zu speichernden Objekts auf die Annotationen in .jpa
     @WebMethod
-    @WebResult(name="validate_object")
-    public <T> List<String> validateObject(T object) {
-        return this.validationBean.validate(object);
+    @WebResult(name="validate_customer")
+    public List<String> validateCustomer(@WebParam(name="customer")Customer customer) {
+        return this.validationBean.validate(customer);
+    }
+    
+    @WebMethod
+    @WebResult(name="validate_car")
+    public List<String> validateCar(@WebParam(name="car") Car car) {
+        return this.validationBean.validate(car);
+    }
+    
+    @WebMethod
+    @WebResult(name="validate_loanAgreement")
+    public List<String> validateLoanAgreement(@WebParam(name="loanAgreement") LoanAgreement loanAgreement) {
+        return this.validationBean.validate(loanAgreement);
     }
 }
