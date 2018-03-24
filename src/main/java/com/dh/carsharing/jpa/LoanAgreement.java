@@ -31,13 +31,11 @@ public class LoanAgreement implements Serializable{
     
     @Column(name = "BEGINNDATUM")
     @NotNull(message = "Das Beginndatum darf nicht leer sein.")
-    //@Future(message = "Das Ausleihdatum muss in der Zukunft liegen.")
     @Temporal(TemporalType.DATE)
     private Date beginn = new Date();
     
     @Column(name = "ENDEDATUM")
     @NotNull(message = "Das Endedatum darf nicht leer sein.")
-    //@Future(message = "Das Rückgabedatum muss in der Zukunft liegen.")
     @Temporal(TemporalType.DATE)
     private Date ende = new Date();
 
