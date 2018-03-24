@@ -22,9 +22,11 @@ public class LoanAgreement implements Serializable{
     private long id;
     
     @ManyToOne
+    @NotNull
     private Customer kunde;
     
     @ManyToOne
+    @NotNull
     private Car auto;
     
     @Column(name = "BEGINNDATUM")
