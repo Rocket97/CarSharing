@@ -14,6 +14,4 @@ public class CarBean extends EntityBean<Car, Long>{
     public CarBean (){
         super(Car.class);
     }
-    
-    
 }

@@ -7,6 +7,7 @@ package com.dh.carsharing.webservice;
 
 import com.dh.carsharing.jpa.*;
 import com.dh.carsharing.ejb.*;
+import com.sun.xml.internal.ws.developer.SchemaValidation;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -32,6 +33,9 @@ public class CarSharingWebService {
     
     @EJB
     LoanAgreementBean loanAgreementBean;
+    
+    @EJB
+    ValidationBean validationBean;
     
     
     //Registrieren eines neuen Kundendatensatzes
@@ -87,5 +91,12 @@ public class CarSharingWebService {
     @WebResult(name="findAll_loanAgreements")
     public List<LoanAgreement> getAllLoanAgreements() {
         return this.loanAgreementBean.findAll();
+    }
+    
+    // Überprüfung der Daten des zu speichernden Objekts auf die Annotationen in .jpa
+    @WebMethod
+    @WebResult(name="validate_object")
+    public <T> List<String> validateObject(T object) {
+        return this.validationBean.validate(object);
     }
 }
