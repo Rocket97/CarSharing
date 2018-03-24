@@ -7,7 +7,6 @@ package com.dh.carsharing.webservice;
 
 import com.dh.carsharing.jpa.*;
 import com.dh.carsharing.ejb.*;
-import com.sun.xml.internal.ws.developer.SchemaValidation;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -63,8 +62,8 @@ public class CarSharingWebService {
 
     @WebMethod
     @WebResult(name="loanAgreement")
-    public LoanAgreement lendCar(@WebParam(name="customerID")  Long customerID, @WebParam(name="carID") Long carID, @WebParam(name="startDate") Date startDate, @WebParam(name="endDate") Date endDate) throws NotAvailableException {
-        return this.loanAgreementBean.lend(customerID, carID, startDate, endDate);
+    public LoanAgreement lendCar(@WebParam(name="customer")  Customer customer, @WebParam(name="car") Car car, @WebParam(name="startDate") Date startDate, @WebParam(name="endDate") Date endDate) throws NotAvailableException {
+        return this.loanAgreementBean.lend(customer, car, startDate, endDate);
     }
     //@WebMethod
     //@WebResult(name="loanAgreement")
