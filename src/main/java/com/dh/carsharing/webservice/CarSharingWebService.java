@@ -7,7 +7,8 @@ package com.dh.carsharing.webservice;
 
 import com.dh.carsharing.jpa.*;
 import com.dh.carsharing.ejb.*;
-import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -62,15 +63,11 @@ public class CarSharingWebService {
 
     @WebMethod
     @WebResult(name="loanAgreement")
-    public LoanAgreement lendCar(@WebParam(name="customer")  Customer customer, @WebParam(name="car") Car car, @WebParam(name="startDate") Date startDate, @WebParam(name="endDate") Date endDate) throws NotAvailableException {
-        return this.loanAgreementBean.lend(customer, car, startDate, endDate);
+    public LoanAgreement lendCar(@WebParam(name="customer")  Customer customer, @WebParam(name="car") Car car, @WebParam(name="startDate") String startDate, @WebParam(name="endDate") String endDate) throws NotAvailableException, ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        return this.loanAgreementBean.lend(customer, car, sdf.parse(startDate), sdf.parse(endDate));
     }
-    //@WebMethod
-    //@WebResult(name="loanAgreement")
-    //public LoanAgreement lendCar(@WebParam(name="customer") Customer customer, @WebParam(name="car") Car car, @WebParam(name="startDate") Date startDate, @WebParam(name="endDate") Date endDate) throws NotAvailableException {
-    //    return this.loanAgreementBean.lend(customer, car, startDate, endDate);
-    //}
-    
+
     //Auflisten aller vorhandenen Fahrzeuge 
     @WebMethod
     @WebResult(name="findAll_cars")
@@ -103,11 +100,5 @@ public class CarSharingWebService {
     @WebResult(name="validate_car")
     public List<String> validateCar(@WebParam(name="car") Car car) {
         return this.validationBean.validate(car);
-    }
-    
-    @WebMethod
-    @WebResult(name="validate_loanAgreement")
-    public List<String> validateLoanAgreement(@WebParam(name="loanAgreement") LoanAgreement loanAgreement) {
-        return this.validationBean.validate(loanAgreement);
     }
 }

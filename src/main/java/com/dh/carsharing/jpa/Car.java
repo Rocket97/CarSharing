@@ -30,7 +30,7 @@ public class Car implements Serializable{
     
     @Column(name = "BAUJAHR", precision = 4)
     @NotNull(message = "Das Baujahr darf nicht leer sein.")
-    @DecimalMin(value = "1886", message = "Das erste Auto wurde im Jahr 1886 gebaut. Sie können mich nicht verarschen ;D .")
+    @DecimalMin(value = "1886", message = "Das erste Auto wurde im Jahr 1886 gebaut. Sie können mich nicht zum Narren halten ;D .")
     private int baujahr;
     
     
